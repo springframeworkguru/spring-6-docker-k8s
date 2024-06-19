@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: reactive
+  name: reactive
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reactive
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: reactive
+    spec:
+      containers:
+      - image: spring-6-reactive:0.0.1-SNAPSHOT
+        name: spring-6-reactive
+        resources: {}
+        env:
+          - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI
+            value: http://auth-server:9000
+status: {}

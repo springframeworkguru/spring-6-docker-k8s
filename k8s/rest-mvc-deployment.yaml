@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: rest-mvc
+  name: rest-mvc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rest-mvc
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: rest-mvc
+    spec:
+      containers:
+      - image: spring-6-rest-mvc:0.0.1-SNAPSHOT
+        name: spring-6-rest-mvc
+        resources: {}
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: localmysql
+          - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI
+            value: http://auth-server:9000
+          - name: SPRING_DATASOURCE_URL
+            value: jdbc:mysql://mysql:3306/restdb
+          - name: SERVER_PORT
+            value: '8080'
+status: {}
